@@ -1,11 +1,12 @@
 package com.spring.Models;
 
 import com.spring.Models.EmbeddedObject.Adress;
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity (name = "USER_DETAILS")
 public class UserDetails {
@@ -25,7 +26,10 @@ public class UserDetails {
     @JoinTable(name = "user_addresses",
         joinColumns = @JoinColumn(name = "user_id")
     )
-    private Set<Adress> listOfOtherAddresses = new HashSet<Adress>();
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "increment-gen", strategy = "increment")
+    @CollectionId(columns = {@Column(name = "address_id")}, generator = "increment-gen", type = @Type(type = "int"))
+    private Collection<Adress> listOfOtherAddresses = new ArrayList<Adress>();
 
     @Lob
     private String bio;
@@ -68,11 +72,11 @@ public class UserDetails {
     }
 
 
-    public Set<Adress> getListOfOtherAddresses() {
+    public Collection<Adress> getListOfOtherAddresses() {
         return listOfOtherAddresses;
     }
 
-    public void setListOfOtherAddresses(Set<Adress> listOfOtherAddresses) {
+    public void setListOfOtherAddresses(Collection<Adress> listOfOtherAddresses) {
         this.listOfOtherAddresses = listOfOtherAddresses;
     }
 }
