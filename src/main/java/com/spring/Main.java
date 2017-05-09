@@ -47,17 +47,19 @@ public class Main {
 
         session.getTransaction().commit();
         session.close();
-        sessionFactory.close();
+        //sessionFactory.close();
 
-/*
+
         session = sessionFactory.openSession();
         session.beginTransaction();
 
         userDetails = session.get(UserDetails.class,4);
 
-        System.out.println(userDetails.getUserName());
-
         session.close();
-        //sessionFactory.close();*/
+
+        System.out.println(userDetails.getUserName());
+        System.out.println(userDetails.getListOfOtherAddresses().size());
+
+        sessionFactory.close();
     }
 }

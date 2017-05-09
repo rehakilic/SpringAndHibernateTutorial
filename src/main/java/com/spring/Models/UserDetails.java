@@ -22,7 +22,7 @@ public class UserDetails {
     @Embedded
     private Adress address;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @JoinTable(name = "user_addresses",
         joinColumns = @JoinColumn(name = "user_id")
     )
