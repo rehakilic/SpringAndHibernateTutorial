@@ -22,6 +22,9 @@ public class UserDetails {
     private Adress address;
 
     @ElementCollection
+    @JoinTable(name = "user_addresses",
+        joinColumns = @JoinColumn(name = "user_id")
+    )
     private Set<Adress> listOfOtherAddresses = new HashSet<Adress>();
 
     @Lob

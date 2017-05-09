@@ -11,6 +11,7 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
+
         UserDetails userDetails = new UserDetails();
         userDetails.setUserName("Reha Kılıç");
 
@@ -46,9 +47,9 @@ public class Main {
 
         session.getTransaction().commit();
         session.close();
-        //sessionFactory.close();
+        sessionFactory.close();
 
-
+/*
         session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -57,6 +58,6 @@ public class Main {
         System.out.println(userDetails.getUserName());
 
         session.close();
-        //sessionFactory.close();
+        //sessionFactory.close();*/
     }
 }
