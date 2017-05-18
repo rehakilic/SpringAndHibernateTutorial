@@ -31,6 +31,8 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Mention here all the model classes along with their package name -->
-        <mapping class="com.spring.Models.UserDetails"></mapping>
+        <!--<mapping class="com.spring.Models.UserDetails"></mapping>-->
+        <mapping class="com.spring.Models.Relationship.User"></mapping>
+        <mapping class="com.spring.Models.Relationship.Vehicle"></mapping>
     </session-factory>
 </hibernate-configuration>

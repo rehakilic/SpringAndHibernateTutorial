@@ -1,6 +1,8 @@
 package com.spring;
 
 import com.spring.Models.EmbeddedObject.Adress;
+import com.spring.Models.Relationship.User;
+import com.spring.Models.Relationship.Vehicle;
 import com.spring.Models.UserDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +14,8 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
 
-        UserDetails userDetails = new UserDetails();
+        // MARK : Before OneToOe
+        /*UserDetails userDetails = new UserDetails();
         userDetails.setUserName("Reha Kılıç");
 
 
@@ -60,6 +63,38 @@ public class Main {
         System.out.println(userDetails.getUserName());
         System.out.println(userDetails.getListOfOtherAddresses().size());
 
+        sessionFactory.close();*/
+
+        User user = new User();
+        user.setUserName("Reha Kılıç");
+
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleName("Car");
+
+        user.setVehicle(vehicle);
+
+        final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        session.save(user);
+        session.save(vehicle);
+
+        session.getTransaction().commit();
+        session.close();
+        //sessionFactory.close();
+
+
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        user = session.get(User.class,4);
+
+        session.close();
+
+        System.out.println(user.getUserName());
+
         sessionFactory.close();
+
     }
 }

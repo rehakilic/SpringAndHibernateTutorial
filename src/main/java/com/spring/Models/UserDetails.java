@@ -23,8 +23,9 @@ public class UserDetails {
     private Adress address;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_addresses",
-        joinColumns = @JoinColumn(name = "user_id")
+    @JoinTable(
+            name = "user_addresses",
+            joinColumns = @JoinColumn(name = "user_id")
     )
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "increment-gen", strategy = "increment")
