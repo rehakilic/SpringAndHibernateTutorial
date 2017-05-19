@@ -1,6 +1,8 @@
 package com.spring;
 
 import com.spring.Models.EmbeddedObject.Adress;
+import com.spring.Models.Relationship.Inheritance.FourWheeler;
+import com.spring.Models.Relationship.Inheritance.TwoWheeler;
 import com.spring.Models.Relationship.User;
 import com.spring.Models.Relationship.Vehicle;
 import com.spring.Models.UserDetails;
@@ -70,7 +72,7 @@ public class Main {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        User user = new User();
+        /*User user = new User();
         user.setUserName("Reha Kılıç");
         session.save(user);
 
@@ -87,6 +89,21 @@ public class Main {
 
         session.save(vehicle);
         session.save(vehicle2);
+*/
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleName("Vehicle");
+
+        TwoWheeler bike = new TwoWheeler();
+        bike.setVehicleName("bike");
+        bike.setStreetingHandle("bike streeting handle");
+
+        FourWheeler car = new FourWheeler();
+        car.setVehicleName("Car");
+        car.setStreetingWheeler("Car streeting wheeler");
+
+        session.save(vehicle);
+        session.save(bike);
+        session.save(car);
 
         session.getTransaction().commit();
         session.close();
