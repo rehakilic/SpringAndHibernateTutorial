@@ -65,36 +65,44 @@ public class Main {
 
         sessionFactory.close();*/
 
-        User user = new User();
-        user.setUserName("Reha Kılıç");
-
-        Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleName("Car");
-
-        user.setVehicle(vehicle);
 
         final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
+        User user = new User();
+        user.setUserName("Reha Kılıç");
         session.save(user);
+
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleName("Car");
+        vehicle.getUserList().add(user);
+
+        Vehicle vehicle2 = new Vehicle();
+        vehicle2.setVehicleName("Truck");
+        vehicle2.getUserList().add(user);
+
+        user.getVehicleList().add(vehicle);
+        user.getVehicleList().add(vehicle2);
+
         session.save(vehicle);
+        session.save(vehicle2);
 
         session.getTransaction().commit();
         session.close();
-        //sessionFactory.close();
-
+        sessionFactory.close();
+/*
 
         session = sessionFactory.openSession();
         session.beginTransaction();
 
-        user = session.get(User.class,4);
+        vehicle = session.get(Vehicle.class,4);
 
         session.close();
 
-        System.out.println(user.getUserName());
+        System.out.println(vehicle.getUser());
 
         sessionFactory.close();
-
+*/
     }
 }

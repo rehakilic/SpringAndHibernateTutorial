@@ -13,8 +13,8 @@
     <table id="7" parent="2" name="employees"/>
     <table id="8" parent="2" name="projects"/>
     <table id="9" parent="2" name="tokens"/>
-    <table id="10" parent="2" name="user_addresses"/>
-    <table id="11" parent="2" name="user_details"/>
+    <table id="10" parent="2" name="user"/>
+    <table id="11" parent="2" name="vehicle"/>
     <table id="12" parent="2" name="work_activities"/>
     <table id="13" parent="2" name="works"/>
     <column id="14" parent="4" name="id">
@@ -210,165 +210,138 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="51" parent="10" name="country">
+    <column id="51" parent="10" name="user_name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="52" parent="10" name="pin_code">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="53" parent="10" name="street">
-      <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="54" parent="10" name="address_id">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="55" parent="10" name="FKr5ux47l57nurvw7syxvcttt3d">
-      <ColNames>user_id</ColNames>
-    </index>
-    <key id="56" parent="10" name="PRIMARY">
+    <key id="52" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>address_id</ColNames>
+      <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="57" parent="11" name="user_id">
+    <column id="53" parent="11" name="vehicle_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="58" parent="11" name="country">
+    <column id="54" parent="11" name="vehicleName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="59" parent="11" name="pin_code">
+    <column id="55" parent="11" name="user_id">
       <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="60" parent="11" name="street">
-      <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="61" parent="11" name="bio">
-      <Position>5</Position>
-      <DataType>longtext|0</DataType>
-    </column>
-    <column id="62" parent="11" name="date_of_birth">
-      <Position>6</Position>
-      <DataType>date|0</DataType>
-    </column>
-    <column id="63" parent="11" name="user_name">
-      <Position>7</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <key id="64" parent="11" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
+    <index id="56" parent="11" name="FKcj9a2meuej3dgi7ecif7l17li">
       <ColNames>user_id</ColNames>
+    </index>
+    <key id="57" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>vehicle_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="65" parent="12" name="id">
+    <column id="58" parent="12" name="id">
       <Position>1</Position>
       <DataType>int(11) unsigned|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="66" parent="12" name="work_activity">
+    <column id="59" parent="12" name="work_activity">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <index id="67" parent="12" name="work_activity">
+    <index id="60" parent="12" name="work_activity">
       <ColNames>work_activity</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="68" parent="12" name="PRIMARY">
+    <key id="61" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="69" parent="12" name="work_activity">
+    <key id="62" parent="12" name="work_activity">
       <ColNames>work_activity</ColNames>
       <UnderlyingIndexName>work_activity</UnderlyingIndexName>
     </key>
-    <column id="70" parent="13" name="id">
+    <column id="63" parent="13" name="id">
       <Position>1</Position>
       <DataType>int(11) unsigned|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="71" parent="13" name="project_id">
+    <column id="64" parent="13" name="project_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="72" parent="13" name="description">
+    <column id="65" parent="13" name="description">
       <Position>3</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="73" parent="13" name="active_workinghours">
+    <column id="66" parent="13" name="active_workinghours">
       <Position>4</Position>
       <DataType>float|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="74" parent="13" name="workinghours_onway">
+    <column id="67" parent="13" name="workinghours_onway">
       <Position>5</Position>
       <DataType>float|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="75" parent="13" name="application_id">
+    <column id="68" parent="13" name="application_id">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="76" parent="13" name="demander_id">
+    <column id="69" parent="13" name="demander_id">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="13" name="demander_person">
+    <column id="70" parent="13" name="demander_person">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="78" parent="13" name="employee_id">
+    <column id="71" parent="13" name="employee_id">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="79" parent="13" name="work_activity_id">
+    <column id="72" parent="13" name="work_activity_id">
       <Position>10</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="80" parent="13" name="week">
+    <column id="73" parent="13" name="week">
       <Position>11</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="81" parent="13" name="month">
+    <column id="74" parent="13" name="month">
       <Position>12</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="82" parent="13" name="work_date">
+    <column id="75" parent="13" name="work_date">
       <Position>13</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="83" parent="13" name="create_date">
+    <column id="76" parent="13" name="create_date">
       <Position>14</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="84" parent="13" name="PRIMARY">
+    <key id="77" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

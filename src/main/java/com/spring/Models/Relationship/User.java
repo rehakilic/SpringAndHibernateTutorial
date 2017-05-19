@@ -1,22 +1,19 @@
 package com.spring.Models.Relationship;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity (name = "USER")
 public class User {
 
-    @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-
-    @OneToOne
-    @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicle;
-
-    @Column(name = "user_name")
+    private Set<Vehicle> vehicleList = new HashSet<Vehicle>(0);
     private String userName;
 
+    @Column(name = "user_name")
     public String getUserName() {
         return userName;
     }
@@ -24,11 +21,23 @@ public class User {
         this.userName = userName;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+
+    //@OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @ManyToMany
+    public Set<Vehicle> getVehicleList() {
+        return vehicleList;
+    }
+    public void setVehicleList(Set<Vehicle> vehicleList) {
+        this.vehicleList = vehicleList;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    @Id
+    @Column(name = "user_id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
