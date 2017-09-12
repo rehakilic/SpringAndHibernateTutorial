@@ -6,11 +6,17 @@ import com.spring.Models.Relationship.Inheritance.TwoWheeler;
 import com.spring.Models.Relationship.User;
 import com.spring.Models.Relationship.Vehicle;
 import com.spring.Models.UserDetails;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.Date;
+import java.util.List;
 
 
 public class Main {
@@ -72,25 +78,70 @@ public class Main {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        /*User user = new User();
-        user.setUserName("Reha Kılıç");
-        session.save(user);
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+
+        CriteriaQuery<Vehicle> criteriaQuery = criteriaBuilder.createQuery(Vehicle.class);
+        Root<Vehicle> from = criteriaQuery.from(Vehicle.class);
+
+        criteriaQuery.select(from);
+        criteriaQuery.where(criteriaBuilder.equal(from.get("vehicleName"),"Car"));
+
+        List<Vehicle> vehicleList = session.createQuery(criteriaQuery).getResultList();
+
+
+
+        /*
+        Query query = session.getNamedQuery("VEHICLE.byNativeId");
+        query.setParameter(0,"14");
+        List<Vehicle> vehicleList = query.getResultList();
+*/
+/*
+        Query query = session.createQuery("from Vehicle where vehicleId > ?");
+        query.setParameter(0,5);
+
+        List<Vehicle> vehicleList = query.getResultList();
+*/
+
+
+        /*User userReha = new User();
+        userReha.setUserName("Reha Kılıç");
+        session.save(userReha);
+
+        User userSerap = new User();
+        userSerap.setUserName("Serap Taşbaş");
+        session.save(userSerap);
 
         Vehicle vehicle = new Vehicle();
         vehicle.setVehicleName("Car");
-        vehicle.getUserList().add(user);
+        vehicle.setUser(userReha);
 
         Vehicle vehicle2 = new Vehicle();
         vehicle2.setVehicleName("Truck");
-        vehicle2.getUserList().add(user);
+        vehicle2.setUser(userReha);
 
-        user.getVehicleList().add(vehicle);
-        user.getVehicleList().add(vehicle2);
+        Vehicle vehicle3 = new Vehicle();
+        vehicle3.setVehicleName("Bike");
+        vehicle3.setUser(userSerap);
+
+        userReha.getVehicleList().add(vehicle);
+        userReha.getVehicleList().add(vehicle2);
+        userSerap.getVehicleList().add(vehicle3);
 
         session.save(vehicle);
         session.save(vehicle2);
-*/
-        Vehicle vehicle = new Vehicle();
+        session.save(vehicle3);*/
+
+        /*Query query = session.createQuery("from Vehicle");
+        query.setFirstResult(1);//where to start from
+        query.setMaxResults(2);//count
+
+        List<Vehicle> vehicleList = query.getResultList();*/
+
+
+
+
+/*        Vehicle vehicle = new Vehicle();
         vehicle.setVehicleName("Vehicle");
 
         TwoWheeler bike = new TwoWheeler();
@@ -104,10 +155,21 @@ public class Main {
         session.save(vehicle);
         session.save(bike);
         session.save(car);
+*/
 
         session.getTransaction().commit();
         session.close();
         sessionFactory.close();
+
+
+
+
+        for (Vehicle vehicle : vehicleList) {
+            System.out.println(vehicle.getVehicleName());
+        }
+
+
+
 /*
 
         session = sessionFactory.openSession();

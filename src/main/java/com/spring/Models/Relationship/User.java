@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity (name = "USER")
+
 public class User {
 
     private int userId;
@@ -22,8 +23,8 @@ public class User {
     }
 
 
-    //@OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    @ManyToMany
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    //@ManyToMany
     public Set<Vehicle> getVehicleList() {
         return vehicleList;
     }

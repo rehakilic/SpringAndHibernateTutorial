@@ -28,13 +28,13 @@
         <property name="show_sql">true</property>
 
         <!-- Drop the existing tables and create new one -->
-         <property name="hbm2ddl.auto">create</property>
+         <property name="hbm2ddl.auto">validate</property>
 
         <!-- Mention here all the model classes along with their package name -->
         <!--<mapping class="com.spring.Models.UserDetails"></mapping>-->
-        <!--<mapping class="com.spring.Models.Relationship.User"></mapping>-->
+        <mapping class="com.spring.Models.Relationship.User"></mapping>
         <mapping class="com.spring.Models.Relationship.Vehicle"></mapping>
-        <mapping class="com.spring.Models.Relationship.Inheritance.TwoWheeler"></mapping>
-        <mapping class="com.spring.Models.Relationship.Inheritance.FourWheeler"></mapping>
+        <!--<mapping class="com.spring.Models.Relationship.Inheritance.TwoWheeler"></mapping>
+        <mapping class="com.spring.Models.Relationship.Inheritance.FourWheeler"></mapping>-->
     </session-factory>
 </hibernate-configuration>
